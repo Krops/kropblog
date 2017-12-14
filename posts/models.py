@@ -9,3 +9,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_date(self):
+        return self.pub_date.strftime('%b %e %Y')
+
+    def get_summary(self):
+        return self.body[:30]

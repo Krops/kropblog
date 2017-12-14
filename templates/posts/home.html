@@ -5,6 +5,13 @@
     <title>Hello Krop</title>
 </head>
 <body>
-Helo hello
+<h1>Welcome to Krop blog</h1>
+<h2>Latest posts</h2>
+{% for post in posts.all %}
+<div>{{ post.title }} </div>
+<div>{{ post.get_date }}</div>
+<div><img src="{{ post.image.url }}"/></div>
+<div>{{ post.get_summary }}</div>
+{% endfor%}
 </body>
 </html>
