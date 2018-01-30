@@ -1,17 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello Krop</title>
+    <title>{{ post.title }}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 </head>
 <body>
-<h1>Welcome to Krop blog</h1>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+            <a class="navbar-brand" href="#">Krop's Blogs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item active"><a class="nav-link" href="https://twitter.com/Widoon">Twitter</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+<h1 class="text-center">Welcome to Krop blog</h1>
+    {% load static %}
+    <img src="{% static 'posts/background.jpg' %}" class="img-fluid rounded mx-auto d-block" style="max-height:350px">
 <h2>Latest posts</h2>
+    <hr>
 {% for post in posts.all %}
-<div>{{ post.title }} </div>
-<div>{{ post.get_date }}</div>
-<div><img src="{{ post.image.url }}"/></div>
-<div>{{ post.get_summary }}</div>
+    <div><a href="{% url 'post_detail' post.id %}"><h3>{{ post.title }}</h3> </a></div>
+    <div><h4>{{ post.get_date }}</h4></div>
+<div><img src="{{ post.image.url }}" class="img-fluid rounded mx-auto d-block" style="max-height:150px"/></div>
+    <div><p>{{ post.get_summary }}</p></div>
 {% endfor%}
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
 </body>
 </html>
